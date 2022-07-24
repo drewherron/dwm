@@ -4,7 +4,8 @@ VERSION = 6.3
 # Customize below to fit your system
 
 # paths
-PREFIX = /usr/local
+# changing from /usr/local to overwrite Debian's apt install in /usr/bin
+PREFIX = /usr
 MANPREFIX = ${PREFIX}/share/man
 
 X11INC = /usr/X11R6/include
