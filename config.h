@@ -34,6 +34,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       0,            0,           -1 },
+	{ "mpv",      NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -68,8 +69,8 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
 // brightness commands
-static const char *upbright[] = { "sudo", "/home/drew/.local/bin/brightness-control", "up", NULL };
-static const char *downbright[] = { "sudo", "/home/drew/.local/bin/brightness-control", "down", NULL };
+static const char *upbright[] = { "/home/drew/.local/bin/brightness-control", "up", NULL };
+static const char *downbright[] = { "/home/drew/.local/bin/brightness-control", "down", NULL };
 static const char *upvol[] = { "/usr/bin/amixer", "set", "Master", "5%+", NULL };
 static const char *downvol[] = { "/usr/bin/amixer", "set", "Master", "5%-", NULL };
 static const char *mutevol[] = { "/usr/bin/amixerl", "set", "Master", "toggle", NULL };
