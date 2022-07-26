@@ -1,5 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
+
+#include <X11/XF86keysym.h>
+
 /* appearance */
 static unsigned int borderpx  = 1;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
@@ -21,6 +24,7 @@ static char *colors[][3] = {
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+/*static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };*/
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -63,6 +67,17 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
+// brightness commands
+static const char *upbright[] = { "sudo", "/home/drew/.local/bin/brightness-control", "up", NULL };
+static const char *downbright[] = { "sudo", "/home/drew/.local/bin/brightness-control", "down", NULL };
+static const char *upvol[] = { "/usr/bin/amixer", "set", "Master", "5%+", NULL };
+static const char *downvol[] = { "/usr/bin/amixer", "set", "Master", "5%-", NULL };
+static const char *mutevol[] = { "/usr/bin/amixerl", "set", "Master", "toggle", NULL };
+/* if those three don't work (with amixer) try these using pactl:
+static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
+static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
+static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+*/
 
 /*
  * Xresources preferences to load at startup
@@ -120,6 +135,12 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+    /* these don't work on my laptop but leave until you can test on new keyboard */
+    { 0,                            XF86XK_MonBrightnessUp,    spawn,          {.v = upbright} },
+    { 0,                            XF86XK_MonBrightnessDown,  spawn,          {.v = downbright} },
+    { 0,                            XF86XK_AudioLowerVolume,   spawn,          {.v = downvol } },
+    { 0,                            XF86XK_AudioMute,          spawn,          {.v = mutevol } },
+    { 0,                            XF86XK_AudioRaiseVolume,   spawn,          {.v = upvol   } },
 };
 
 /* button definitions */
