@@ -6,7 +6,7 @@
 /* appearance */
 static unsigned int borderpx  = 1;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
-static int showbar            = 1;        /* 0 means no bar */
+static int showbar            = 0;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Cascadia Mono:pixelsize=16" };
 static const char dmenufont[]       = "Cascadia Mono:pixelsize=16";
@@ -16,6 +16,10 @@ static char normfgcolor[]           = "#bbbbbb";
 static char selfgcolor[]            = "#eeeeee";
 static char selbordercolor[]        = "#005577";
 static char selbgcolor[]            = "#005577";
+static char menubgcolor[]           = "#005577";
+static char menufgcolor[]           = "#005577";
+static char menuselbordercolor[]    = "#005577";
+static char menuselfgcolor[]        = "#005577";
 static char *colors[][3] = {
        /*               fg           bg           border   */
        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
@@ -31,10 +35,10 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       0,            0,           -1 },
-	{ "mpv",      NULL,       NULL,       0,            1,           -1 },
+	/* class              instance    title       tags mask     isfloating   monitor */
+	{ "music_term",       NULL,       NULL,       1 << 5,       0,           -1 },
+	{ "mpv",              NULL,       NULL,       0,            1,           -1 },
+	{ "guake",            NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -66,7 +70,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", menubgcolor, "-nf", menufgcolor, "-sb", menuselbordercolor, "-sf", menuselfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
 // brightness commands
 static const char *upbright[] = { "/home/drew/.local/bin/brightness-control", "up", NULL };
@@ -97,6 +101,10 @@ ResourcePref resources[] = {
 		{ "nmaster",          	INTEGER, &nmaster },
 		{ "resizehints",       	INTEGER, &resizehints },
 		{ "mfact",      	 	FLOAT,   &mfact },
+		{ "menubgcolor",        STRING,  &menubgcolor },
+		{ "menufgcolor",        STRING,  &menufgcolor },
+		{ "menuselbordercolor", STRING,  &menuselbordercolor },
+		{ "menuselfgcolor",     STRING,  &menuselfgcolor },
 };
 
 static Key keys[] = {
