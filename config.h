@@ -70,7 +70,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", menubgcolor, "-nf", menufgcolor, "-sb", menuselbordercolor, "-sf", menuselfgcolor, NULL };
+static const char *dmenucmd[] = { "dmenu_run_history", "-m", dmenumon, "-fn", dmenufont, "-nb", menubgcolor, "-nf", menufgcolor, "-sb", menuselbordercolor, "-sf", menuselfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
 // brightness commands
 static const char *upbright[] = { "/home/drew/.local/bin/brightness-control", "up", NULL };
