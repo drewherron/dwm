@@ -144,12 +144,13 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-    /* these don't work on my laptop but leave until you can test on new keyboard */
-    { 0,                            XF86XK_MonBrightnessUp,    spawn,          {.v = upbright} },
+    { 0,                            XF86XK_MonBrightnessUp,    spawn,          {.v = upbright  } },
     { 0,                            XF86XK_MonBrightnessDown,  spawn,          {.v = downbright} },
-    { 0,                            XF86XK_AudioLowerVolume,   spawn,          {.v = downvol } },
-    { 0,                            XF86XK_AudioMute,          spawn,          {.v = mutevol } },
-    { 0,                            XF86XK_AudioRaiseVolume,   spawn,          {.v = upvol   } },
+    { 0,                            XF86XK_AudioLowerVolume,   spawn,          {.v = downvol   } },
+    { 0,                            XF86XK_AudioMute,          spawn,          {.v = mutevol   } },
+    { 0,                            XF86XK_AudioRaiseVolume,   spawn,          {.v = upvol     } },
+    { ShiftMask,                    XK_Shift_R,                spawn,          SHCMD("setxkbmap -layout clmk-dh") },
+    { ShiftMask,                    XK_Shift_L,                spawn,          SHCMD("setxkbmap -layout us") },
 };
 
 /* button definitions */
