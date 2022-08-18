@@ -53,11 +53,12 @@ static const Layout layouts[] = {
  	{ "[S]",      spiral },  /* first entry is default */
 	{ "[T]",      tile },
 	{ "[F]",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "[P]",      monocle },
  	{ "[D]",      dwindle },
 };
 
 /* key definitions */
+//#define ALTKEY Mod1Mask
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -82,6 +83,12 @@ static const char *mutevol[] = { "/usr/bin/amixerl", "set", "Master", "toggle", 
 static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+*/
+/* Didn't work
+static const char *altleft[] = { "/home/drew/.local/bin/alt-vimkeys.sh", "m", NULL };
+static const char *altdown[] = { "/home/drew/.local/bin/alt-vimkeys.sh", "n", NULL };
+static const char *altup[] = { "/home/drew/.local/bin/alt-vimkeys.sh", "e", NULL };
+static const char *altright[] = { "/home/drew/.local/bin/alt-vimkeys.sh", "i", NULL };
 */
 
 /*
@@ -109,23 +116,24 @@ ResourcePref resources[] = {
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_o,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_z,      spawn,          {.v = termcmd } },
+	/*{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },*/
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_n,      focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_e,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_m,      setmfact,       {.f = -0.05} },
+	{ MODKEY,                       XK_i,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_u,      incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_l,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_s,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[3]} },
-	{ MODKEY|ShiftMask,             XK_s,      setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                       XK_p,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_d,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -149,6 +157,12 @@ static Key keys[] = {
     { 0,                            XF86XK_AudioLowerVolume,   spawn,          {.v = downvol   } },
     { 0,                            XF86XK_AudioMute,          spawn,          {.v = mutevol   } },
     { 0,                            XF86XK_AudioRaiseVolume,   spawn,          {.v = upvol     } },
+    /*
+    { ALTKEY,                       XK_m,                      spawn,          {.v = altleft  } },
+    { ALTKEY,                       XK_n,                      spawn,          {.v = altdown  } },
+    { ALTKEY,                       XK_e,                      spawn,          {.v = altup    } },
+    { ALTKEY,                       XK_i,                      spawn,          {.v = altright } },
+    */
     { ShiftMask,                    XK_Shift_R,                spawn,          SHCMD("setxkbmap -layout clmk-dh") },
     { ShiftMask,                    XK_Shift_L,                spawn,          SHCMD("setxkbmap -layout us") },
 };
