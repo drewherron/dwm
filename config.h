@@ -83,6 +83,9 @@ static const char *downbright[] = { "/home/drew/.local/bin/brightness-control", 
 static const char *upvol[] = { "/usr/bin/amixer", "set", "Master", "5%+", NULL };
 static const char *downvol[] = { "/usr/bin/amixer", "set", "Master", "5%-", NULL };
 static const char *mutevol[] = { "/usr/bin/amixerl", "set", "Master", "toggle", NULL };
+static const char *cmd_emacs[]  = { "emacsclient", "--no-wait", "-create-frame", "--alternate-editor=\"\"", NULL };
+
+
 /* if those three don't work (with amixer) try these using pactl:
 static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
@@ -146,6 +149,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY|ShiftMask,    			XK_e, 	   spawn,          {.v = cmd_emacs } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
