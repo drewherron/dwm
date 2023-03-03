@@ -6,7 +6,7 @@
 /* appearance */
 static unsigned int borderpx  = 1;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
-static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
+static const int swallowfloating  = 0;    /* 1 means swallow floating windows by default */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Cascadia Mono:pixelsize=16" };
@@ -47,7 +47,7 @@ static const Rule rules[] = {
 
 /* layout(s) */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
-static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
 static int nmaster     = 1;    /* number of clients in master area */
 static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
@@ -84,18 +84,12 @@ static const char *upvol[] = { "/usr/bin/amixer", "set", "Master", "5%+", NULL }
 static const char *downvol[] = { "/usr/bin/amixer", "set", "Master", "5%-", NULL };
 static const char *mutevol[] = { "/usr/bin/amixerl", "set", "Master", "toggle", NULL };
 static const char *cmd_emacs[]  = { "emacsclient", "--no-wait", "-create-frame", "--alternate-editor=\"\"", NULL };
-
+//static const char *music_term[]  = { "st", "-d", "~/Music", NULL };
 
 /* if those three don't work (with amixer) try these using pactl:
 static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
-*/
-/* Didn't work
-static const char *altleft[] = { "/home/drew/.local/bin/alt-vimkeys.sh", "m", NULL };
-static const char *altdown[] = { "/home/drew/.local/bin/alt-vimkeys.sh", "n", NULL };
-static const char *altup[] = { "/home/drew/.local/bin/alt-vimkeys.sh", "e", NULL };
-static const char *altright[] = { "/home/drew/.local/bin/alt-vimkeys.sh", "i", NULL };
 */
 
 /*
@@ -125,7 +119,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_o,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = termcmd } },
-	/*{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },*/
+//	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = music_term } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -139,7 +133,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_s,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_p,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY,                       XK_d,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
@@ -165,12 +159,6 @@ static Key keys[] = {
     { 0,                            XF86XK_AudioLowerVolume,   spawn,          {.v = downvol   } },
     { 0,                            XF86XK_AudioMute,          spawn,          {.v = mutevol   } },
     { 0,                            XF86XK_AudioRaiseVolume,   spawn,          {.v = upvol     } },
-    /*
-    { ALTKEY,                       XK_m,                      spawn,          {.v = altleft  } },
-    { ALTKEY,                       XK_n,                      spawn,          {.v = altdown  } },
-    { ALTKEY,                       XK_e,                      spawn,          {.v = altup    } },
-    { ALTKEY,                       XK_i,                      spawn,          {.v = altright } },
-    */
     { ShiftMask,                    XK_Shift_R,                spawn,          SHCMD("setxkbmap -layout clmk-dh") },
     { ShiftMask,                    XK_Shift_L,                spawn,          SHCMD("setxkbmap -layout us") },
 };
