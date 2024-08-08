@@ -28,9 +28,9 @@ static char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+//static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 //static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
-//static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
+static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
 //static const char *tags[] = { "いち", "に", "さん", "よん", "ご", "ろく", "なな", "はち", "きゅう" };
 //static const char *tags[] = { "ένα", "δύο", "τρία", "τέσσερα", "πέντε", "έξι", "επτά", "οκτώ", "εννέα" };
 //static const char *tags[] = { "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять" };
