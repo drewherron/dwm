@@ -5,7 +5,7 @@
 
 /* appearance */
 static unsigned int borderpx  = 1;        /* border pixel of windows */
-static unsigned int snap      = 32;       /* snap pixel */
+static unsigned int snap      = 28;       /* snap pixel */
 static const int swallowfloating  = 0;    /* 1 means swallow floating windows by default */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
@@ -45,7 +45,6 @@ static const Rule rules[] = {
 	{ "music_term", NULL,       NULL,           1 << 5,    0,           1,          0,       -1 },
 	{ "mpv",        NULL,       NULL,           0,         1,           0,          1,       -1 },
 	{ "guake",      NULL,       NULL,           0,         1,           0,          0,       -1 },
-	{ "Firefox",    NULL,       NULL,           0,         0,           0,         -1,       -1 },
 	{ "st",         NULL,       NULL,           0,         0,           1,          0,       -1 },
 	{ NULL,         NULL,       "Event Tester", 0,         0,           0,          1,       -1 }, /* xev */
 };
@@ -126,11 +125,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_z,      spawn,          {.v = termcmd } },
 //	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = music_term } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_n,      focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_e,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_m,      setmfact,       {.f = -0.05} },
+	{ MODKEY,                       XK_i,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_l,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_u,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
@@ -164,8 +163,9 @@ static Key keys[] = {
     { 0,                            XF86XK_AudioLowerVolume,   spawn,          {.v = downvol   } },
     { 0,                            XF86XK_AudioMute,          spawn,          {.v = mutevol   } },
     { 0,                            XF86XK_AudioRaiseVolume,   spawn,          {.v = upvol     } },
-    { ShiftMask,                    XK_Shift_R,                spawn,          SHCMD("setxkbmap -layout clmk-dh") },
-    { ShiftMask,                    XK_Shift_L,                spawn,          SHCMD("setxkbmap -layout us") },
+// If not using kmonad:
+//    { ShiftMask,                    XK_Shift_R,                spawn,          SHCMD("setxkbmap -layout clmk-dh") },
+//    { ShiftMask,                    XK_Shift_L,                spawn,          SHCMD("setxkbmap -layout us") },
 };
 
 /* button definitions */
