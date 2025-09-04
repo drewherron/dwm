@@ -78,15 +78,23 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
+// keyboard layout
+static const char *layouttoggle[] = { "/home/drew/.local/bin/layout_toggle.sh", NULL };
+//static const char *colemakcmd[] = { "setxkbmap", "us", "-variant", "colemak_dh_ortho", NULL };
+//static const char *qwertycmd[] = { "setxkbmap", "us", NULL };
+
+// dmenu
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run_history", "-m", dmenumon, "-fn", dmenufont, "-nb", menubgcolor, "-nf", menufgcolor, "-sb", menuselbordercolor, "-sf", menuselfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
 // brightness commands
 static const char *upbright[] = { "/home/drew/.local/bin/brightness-control", "up", NULL };
 static const char *downbright[] = { "/home/drew/.local/bin/brightness-control", "down", NULL };
+// volume
 static const char *upvol[] = { "/usr/bin/amixer", "set", "Master", "5%+", NULL };
 static const char *downvol[] = { "/usr/bin/amixer", "set", "Master", "5%-", NULL };
 static const char *mutevol[] = { "/usr/bin/amixerl", "set", "Master", "toggle", NULL };
+// emacs
 static const char *cmd_emacs[]  = { "emacsclient", "--no-wait", "-create-frame", "--alternate-editor=\"\"", NULL };
 //static const char *music_term[]  = { "st", "-d", "~/Music", NULL };
 
@@ -121,6 +129,7 @@ ResourcePref resources[] = {
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
+    { MODKEY,                       XK_grave,      spawn,          {.v = layouttoggle } },
 	{ MODKEY,                       XK_o,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = termcmd } },
 //	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = music_term } },
