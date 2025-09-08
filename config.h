@@ -86,6 +86,7 @@ static const char *layouttoggle[] = { "/home/drew/.local/bin/layout_toggle.sh", 
 // dmenu
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run_history", "-m", dmenumon, "-fn", dmenufont, "-nb", menubgcolor, "-nf", menufgcolor, "-sb", menuselbordercolor, "-sf", menuselfgcolor, NULL };
+static const char *passmenucmd[] = { "passmenu", "-m", dmenumon, "-fn", dmenufont, "-nb", menubgcolor, "-nf", menufgcolor, "-sb", menuselbordercolor, "-sf", menuselfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
 // brightness commands
 static const char *upbright[] = { "/home/drew/.local/bin/brightness-control", "up", NULL };
@@ -157,6 +158,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY|ShiftMask,    			XK_e, 	   spawn,          {.v = cmd_emacs } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = passmenucmd } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
